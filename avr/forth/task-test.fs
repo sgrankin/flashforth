@@ -9,7 +9,7 @@
 \ *******************************************************************
 \ FlashForth is licensed according to the GNU General Public License*
 \ *******************************************************************
-\ Demo for the Olimex AVR-MT-128. Switches relay and blinks led in 
+\ Demo for the Olimex AVR-MT-128. Switches relay and blinks led in
 \ background task.
 single
 -task1
@@ -25,11 +25,11 @@ ram variable delay
 : ledon   pin6 porta mset ;
 
 0 18 20 0 task: task1
-: taskloop 
+: taskloop
   400 delay !
-  $40 ddra mset  \  Output 
-  begin 
-    delay @ ms 
+  $40 ddra mset  \  Output
+  begin
+    delay @ ms
     pin6 porta mtst
     if
        ledoff

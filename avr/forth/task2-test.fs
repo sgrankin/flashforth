@@ -9,7 +9,7 @@
 \ *******************************************************************
 \ FlashForth is licensed according to the GNU General Public License*
 \ *******************************************************************
-\ Demo for the Olimex AVR-P28 with Atmega328P. Blinks led in 
+\ Demo for the Olimex AVR-P28 with Atmega328P. Blinks led in
 \ background task.
 single
 -task2
@@ -26,11 +26,11 @@ ram variable delay
 : ledon   pin5 portc mclr ;
 
 0 18 20 0 task: task2
-: task2loop 
+: task2loop
   100 delay !
   pin5 ddrc mset  \  Output
   begin
-    delay @ ms 
+    delay @ ms
     pin5 portc mtst
     if
        ledon

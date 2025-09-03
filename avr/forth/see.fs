@@ -8,7 +8,7 @@
 \ *********************************************************************
 \    FlashForth is licensed acording to the GNU General Public License*
 \ *********************************************************************
--see 
+-see
 marker -see
 hex ram
 : *@ dup @ ;
@@ -16,18 +16,18 @@ hex ram
 : *@+ dup cell+ @ u.4 ;
 : 5sp 5 spaces ;
 : @braddr ( addr -- addr xt-addr )
-    *@ fff and dup 800 and 
+    *@ fff and dup 800 and
     if f800 or then 2* over +  cell+ ;
 : @xtaddr ( addr -- addr xt-addr )
   dup cell+ @ xa> ;
 : .rjmp ( addr -- addr+2 ) @braddr u.4 cell+ ;
 : .br  ( addr -- addr+2 )
-     *@ 3 rshift 7f and dup 40 and 
+     *@ 3 rshift 7f and dup 40 and
      if ff80 or then 2* over + cell+ u.4 cell+ ;
-: .reg ( addr -- addr ) 
+: .reg ( addr -- addr )
    dup @ 4 rshift 1f and ." r" decimal 2 u.r hex cell+ ;
 : .ldi ( addr -- addr )
-  *@ dup 4 rshift dup 000f and 0010 + 
+  *@ dup 4 rshift dup 000f and 0010 +
   ." r" decimal 2 u.r hex
   00f0 and swap 000f and + 2 u.r cell+ ;
 : ?call ( addr -- addr f ) *@ fe0e and 940e - ;
@@ -47,7 +47,7 @@ hex ram
 : (see) ( addr -- addr' | false )
   dup u.4
   *@ u.4
-  ?call 0= if *@+ ." call  " @xtaddr c>n .id cell+ cell+ else 
+  ?call 0= if *@+ ." call  " @xtaddr c>n .id cell+ cell+ else
   ?rcall 0= if 5sp ." rcall " @braddr c>n .id cell+ else
   ?breq 0= if 5sp ." breq  " .br else
   ?brne 0= if 5sp ." brne  " .br else

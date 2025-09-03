@@ -31,7 +31,7 @@ marker -xdump
    rot $fffe and           \ start on even address
    rot rot $10 u/          \ number of rows to print
    for
-     cr 2dup 6 ud.r 
+     cr 2dup 6 ud.r
      [char] : emit space   \ display row addr
      $8 for
        xx@ u.2 #8 rshift u.2 2 m+

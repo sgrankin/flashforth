@@ -35,14 +35,14 @@ hex
 
 : Rd:        ( Rd opcode mask -- xxxx.xxxd.dddd.xxxx )
   create,,
-  does> >r 
+  does> >r
     $4 lshift $1f0 and                 \ -- 0ddddd0000
     r> mask, ;
 
  \ Operands Rd,constant 8bit
 : Rd,k:     ( Rd k8 opcode mask -- xxxx.kkkk.dddd.kkkk )
   create,,
-  does> >r 
+  does> >r
     $ff and dup $4 lshift or $f0f and  \ -- Rd kkkk0000kkkk
     swap $4 lshift $f0 and             \ -- kk dddd0000
     or r> mask, ;              \ kkdd opcode mask mask! to flash
@@ -50,7 +50,7 @@ hex
 \ Operands Rd,Rr,constant 6bit
 : Rd,Rr+q:  ( Rd Rr k6 opcode mask -- xxkx.kkxd.dddd.rkkk )
   create,,
-  does> >r 
+  does> >r
     $3f and dup $7 lshift                \ -- Rd Rr k6 xkkkkkkxxxxxxx
     dup $1000 and $1 lshift or or $2c07 and  \ -- Rd Rr kxkkxxxxxxxkkk
     rot $4 lshift $1f0 and              \ -- Rr kk ddddd0000
@@ -61,7 +61,7 @@ hex
 \ Operands Rw pair,constant 6bit
 : Rw,k:     ( Rw k6 opcode mask -- xxxx.xxxx.kkww.kkkk )
   create,,
-  does> >r 
+  does> >r
     $3f and dup $2 lshift $c0 and      \ -- Rw k6 kk000000
     swap $f and or                     \ -- Rw kk00kkkk
     swap $4 lshift $30 and             \ -- kk ww0000
@@ -70,14 +70,14 @@ hex
 \ Operands P-port,bit
 : P,b:      ( P b opcode mask -- xxxx.xxxx.PPPP.Pbbb )
   create,,
-  does> >r 
+  does> >r
     $7 and swap $3 lshift              \ -- 0bbb PPPPP000
     or r> mask, ;                      \ PPbb opcode mask mask! to flash
 
 \ Operands Rd,P-port
 : Rd,P:     ( Rd P opcode mask -- xxxx.xPPd.dddd.PPPP )
   create,,
-  does> >r 
+  does> >r
     $3f and dup $5 lshift or $60f and  \ -- Rd PP00000PPPP
     swap $4 lshift $1f0 and            \ -- PP 00ddddd0000
     or r> mask, ;                      \ ddPP opcode mask mask! to flash
@@ -86,7 +86,7 @@ hex
 \ Operand k16 k6
 : k22:      ( k16 k6 opcode mask -- k16 xxxx.xxxk.kkkk.xxxk )
   create,,
-  does> >r 
+  does> >r
     dup $1 and swap $3 lshift          \ -- 000k kkkkkk000
     or r> mask,  i, ;                  \ k16 kk opcode mask mask! to flash
 
@@ -95,7 +95,7 @@ hex
   flash create , ram does> @ i, ;
 
 
-0100 ff00 Rd,Rr: movw_ 
+0100 ff00 Rd,Rr: movw_
 : movw,   1 rshift swap        \ R0:1,R2:3,R4:5,..R30:31
           1 rshift swap        \ 0 2 movw, R0:1<--R2:3
           movw_ ;              \ Rd Rr --
@@ -126,7 +126,7 @@ hex
 : cbr,    invert andi, ;
 e000 f000  Rd,k: ldi,
 
- 
+
 8000 d200  Rd,Rr+q: ldd, ( Rd Rr q -- ) \ Rr={Z+,Y+}, 2 Y+ 3F ldd,
 8200 d200  Rd,Rr+q: std, ( Rr Rd q -- ) \ Rd={Z+,Y+}, Y+ 3F 2 std,
 
