@@ -48,7 +48,7 @@
 ;;; The workaround is to use XON/XOFF flow control and/or 1/2 ms character delay in the terminal program.
 ;;; Or use the ff-shell.py which adds end of line (CR LF) flow control.
 #define BAUDRATE0 250000              // Serial baudrate UART0
-#define U0FC_TYPE 0                  // 0 = NONE, 1 = XON/XOFF, 2=CTS/RTS
+#define U0FC_TYPE 1                  // 0 = NONE, 1 = XON/XOFF, 2=CTS/RTS
 #define U0RTS_PORT PORTD
 #define U0RTS_DDR DDRD
 #define U0RTS_BIT 3
@@ -102,7 +102,7 @@
 #endif
 
 ; UART buffer sizes
-#define RX0_BUF_SIZE 32  // 8,16,32,64
+#define RX0_BUF_SIZE 64  // 8,16,32,64
 #define RX0_OFF_FILL 4   // Fill level for XOFF
 
 #define RX1_BUF_SIZE 32  // 8,16,32,64
