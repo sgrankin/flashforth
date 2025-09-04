@@ -64,10 +64,10 @@
 #define BASE_DEFAULT 10
 
 ; Set to 1 for power save when CPU is idle
-#define IDLE_MODE 1
+#define IDLE_MODE 0
 
 ; Enable the cpu load measurement. Uses Timer 1. Needs IDLE_MODE 1
-#define CPU_LOAD 1
+#define CPU_LOAD 0
 
 ; CPU load indicator led definitions. Needs IDLE_MODE = 1
 #define CPU_LOAD_LED 1            // set to 1 to enable
