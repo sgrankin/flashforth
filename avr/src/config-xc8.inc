@@ -111,10 +111,10 @@
 ;;; USER AREA sizes for the OPERATOR task
 #define RETURN_STACK_SIZE 64          // 32 cells return stack
 #define PARAMETER_STACK_SIZE 64       // 32 cells parameter stack
-#define TIB_SIZE 90                   // 80 chars tib size +  10 chars hold area
+#define TIB_SIZE 255                  // N chars tib size +  10 chars hold area
 
 ; Set to 1 to allow control-o to reset FlashForth from the operator UART
-#define CTRL_O_WARM_RESET 0
+#define CTRL_O_WARM_RESET 1
 
 ; Select which timer to use for the system millisecond ticks 0, 1, 2
 #define MS_TIMER 0
